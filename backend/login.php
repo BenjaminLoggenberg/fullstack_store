@@ -1,5 +1,7 @@
 <?php
-// login.php
+
+include_once 'cors.php';
+
 include_once 'db.php';
 
 $data = json_decode(file_get_contents("php://input"));
@@ -10,7 +12,7 @@ $password = $data->password;
 $db = new Database();
 $conn = $db->getConnection();
 
-$query = "SELECT * FROM users WHERE username = :username LIMIT 0,1";
+$query = "SELECT * FROM user WHERE username = :username LIMIT 0,1";
 $stmt = $conn->prepare($query);
 $stmt->bindParam(":username", $username);
 $stmt->execute();

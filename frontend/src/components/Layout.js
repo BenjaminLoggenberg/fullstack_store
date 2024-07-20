@@ -5,13 +5,14 @@ import Sidebar from './Sidebar';
 import { Box } from '@mui/material';
 import { useAuth } from './AuthContext';
 import BackToTop from './BackToTop';
+import TopBar from './Topbar';
 
 const Layout = () => {
     const { isAuthenticated } = useAuth();
 
     return (
         <>
-        <h1>Eccomerce Store</h1>
+        <TopBar />
         <Box sx={{ display: 'flex' }}>
             {isAuthenticated && <Sidebar />}
             <Box sx={{ flexGrow: 1, p: 3 }}>

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Container, Typography } from '@mui/material';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [responseMessage, setResponseMessage] = useState('');
 
@@ -17,19 +17,18 @@ const Login = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch('#', {
+            const response = await fetch('http://localhost:8888/login.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    email,
+                    username,
                     password,
                 }),
             });
 
-            // if (response.ok) {
-            if (true) {
+            if (response.ok) {
                 // Assuming the response contains a token or similar
                 // Save token to local storage or context
                 login();
@@ -49,10 +48,10 @@ const Login = () => {
             <Typography variant="h5">Login</Typography>
             <form onSubmit={handleSubmit}>
                 <TextField
-                    label="Email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    label="Username"
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                     fullWidth
                     margin="normal"
                 />
