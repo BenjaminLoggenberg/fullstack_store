@@ -1,8 +1,6 @@
 <?php
+include_once 'cors.php';
 
-header("Access-Control-Allow-Origin: *"); 
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS"); 
-header("Access-Control-Allow-Headers: Content-Type, Authorization"); // Allowed headers
 // all_products.php
 include_once 'db.php'; // Include database connection file
 // Initialize database connection

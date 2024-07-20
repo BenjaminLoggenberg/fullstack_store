@@ -1,5 +1,5 @@
 <?php
-// register.php
+include_once 'cors.php';
 include_once 'db.php';
 
 $data = json_decode(file_get_contents("php://input"));

@@ -27,10 +27,7 @@ const Register = () => {
                 }),
             });
 
-            if (response.ok) {
-    
-
-        
+            if (response.ok) {        
                 navigate('/');
             }
           else {
