@@ -1,43 +1,50 @@
 <?php
-$servername = "localhost";
-$username = "root"; // Your MySQL root username
-$password = "root"; // Your MySQL root password
-$dbname = "shopdb"; // The database you want to create
-$port = "8889";
+class Database {
+    private $host = "localhost";
+    private $username = "root"; // Your MySQL root username
+    private $password = "root"; // Your MySQL root password
+    private $dbname = "shopdb"; // The database you want to create
+    public $conn;
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, '', $port);
+    public function __construct() {
+        $this->conn = $this->connect();
+    }
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    private function connect() {
+        try {
+            // Create a new PDO instance
+            $pdo = new PDO("mysql:host=$this->host", $this->username, $this->password);
+            // Set PDO attributes
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// Create database
-$sql = "CREATE DATABASE IF NOT EXISTS $dbname";
-if ($conn->query($sql) === TRUE) {
-    echo "Database created successfully\n";
-} else {
-    echo "Error creating database: " . $conn->error;
-}
+            // Create the database if it does not exist
+            $pdo->exec("CREATE DATABASE IF NOT EXISTS $this->dbname");
+            echo "Database created successfully\n";
 
-// Select the database
-$conn->select_db($dbname);
+            // Select the database
+            $pdo->exec("USE $this->dbname");
 
-// Read SQL file
-$sql = file_get_contents('db_setup.sql');
-
-// Execute SQL commands
-if ($conn->multi_query($sql)) {
-    do {
-        if ($result = $conn->store_result()) {
-            $result->free();
+            return $pdo;
+        } catch (PDOException $e) {
+            die("Connection failed: " . $e->getMessage());
         }
-    } while ($conn->more_results() && $conn->next_result());
-    echo "Database setup completed successfully\n";
-} else {
-    echo "Error setting up database: " . $conn->error;
-}
+    }
 
-$conn->close();
+    public function executeSqlFile($filename) {
+        try {
+            // Read SQL file
+            $sql = file_get_contents($filename);
+
+            // Execute SQL commands
+            $this->conn->exec($sql);
+            echo "Database setup completed successfully\n";
+        } catch (PDOException $e) {
+            echo "Error setting up database: " . $e->getMessage();
+        }
+    }
+
+    public function getConnection() {
+        return $this->conn;
+    }
+}
 ?>
