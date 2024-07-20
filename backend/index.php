@@ -1,5 +1,7 @@
 <?php
-// index.php
+
+include_once 'db.php';
+
 $request_method = $_SERVER["REQUEST_METHOD"]; // Get the request method (GET, POST, etc.)
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); // Get the request path
 

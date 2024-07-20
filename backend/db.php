@@ -1,25 +1,43 @@
 <?php
-// db.php
-class Database {
-    private $host = 'localhost'; // Database host
-    private $db_name = 'shop_db'; // Database name
-    private $username = 'root'; // Database username (change as needed)
-    private $password = ''; // Database password (change as needed)
-    public $conn; // Database connection
+$servername = "localhost";
+$username = "root"; // Your MySQL root username
+$password = ""; // Your MySQL root password
+$dbname = "shopdb"; // The database you want to create
+$port = "8889";
 
-    // Method to get the database connection
-    public function getConnection() {
-        $this->conn = null;
-        try {
-            // Create a new PDO connection
-            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Set error mode to exception
-        } catch(PDOException $exception) {
-            // Output connection error message
-            echo "Connection error: " . $exception->getMessage();
-        }
-        return $this->conn; // Return the connection
-    }
+// Create connection
+$conn = new mysqli($servername, $username, $password, '', $port);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
-?>
 
+// Create database
+$sql = "CREATE DATABASE IF NOT EXISTS $dbname";
+if ($conn->query($sql) === TRUE) {
+    echo "Database created successfully\n";
+} else {
+    echo "Error creating database: " . $conn->error;
+}
+
+// Select the database
+$conn->select_db($dbname);
+
+// Read SQL file
+$sql = file_get_contents('db_setup.sql');
+
+// Execute SQL commands
+if ($conn->multi_query($sql)) {
+    do {
+        if ($result = $conn->store_result()) {
+            $result->free();
+        }
+    } while ($conn->more_results() && $conn->next_result());
+    echo "Database setup completed successfully\n";
+} else {
+    echo "Error setting up database: " . $conn->error;
+}
+
+$conn->close();
+?>
