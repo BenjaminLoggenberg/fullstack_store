@@ -33,6 +33,8 @@ if($num > 0) {
     }
 } else {
     echo json_encode(array("message" => "User not found."));
+    http_response_code(401);
+    exit;
 }
 ?>
 

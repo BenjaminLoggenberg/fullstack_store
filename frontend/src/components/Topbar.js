@@ -7,7 +7,7 @@ import { useAuth } from './AuthContext'; // Adjust the path as needed
 
 
 const TopBar = () => {
-    const { logout } = useAuth(); // 
+    const { logout, isAuthenticated } = useAuth(); // 
     const handleLogout = () => { logout(); 
         window.location.href = '/'; // Redirect to home page or login page 
         };
@@ -27,15 +27,14 @@ const TopBar = () => {
                     </Typography>
                 </Box>
 
-                {/* Shopping Cart Icon */}
-                <IconButton color="inherit" component={Link} to="/cart">
-                    <ShoppingCartIcon />
-                </IconButton>
-
-                {/* Logout Button */}
-                <Button color="inherit" startIcon={<LogoutIcon />} onClick={() => handleLogout()}>
-                    Logout
-                </Button>
+              {isAuthenticated && ( 
+                <> 
+                <IconButton color="inherit" component={Link} to="/cart"> <ShoppingCartIcon /> 
+                </IconButton> 
+                <Button color="inherit" startIcon={<LogoutIcon />} onClick={handleLogout}> Logout 
+                </Button> 
+                </> 
+            )}
             </Toolbar>
         </AppBar>
     );
