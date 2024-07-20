@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
 
-const Cart = () => {
+export const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
 
     // Load cart items from localStorage on component mount
@@ -23,7 +23,7 @@ const Cart = () => {
         localStorage.setItem('cart', JSON.stringify(updatedCart));
         // Update state
         setCartItems(updatedCart);
-        alert(`${productToRemove.name} removed from cart!`);
+       
     };
 
     return (

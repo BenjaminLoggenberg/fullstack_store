@@ -10,8 +10,10 @@ import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
 import Profile from './pages/Profile';
 import About from './pages/About';
+import { Cart } from './pages/cart';
 import { AuthProvider } from './components/AuthContext';
-import ProtectedRoute from './components/ProtectedRoute'
+import ProtectedRoute from './components/ProtectedRoute';
+
 
 
 const router = createBrowserRouter([
@@ -46,6 +48,10 @@ const router = createBrowserRouter([
             {
                 path: 'contact',
                 element: <ProtectedRoute element={<Contact />}/>,
+            },
+            {
+                path: 'cart',
+                element: <ProtectedRoute element={<Cart />}/>,
             },
         ],
     },

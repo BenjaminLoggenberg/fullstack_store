@@ -8,7 +8,7 @@ const Products = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:8888/backend/products.php'); // Adjust the URL as needed
+                const response = await fetch('http://localhost:8888/products.php'); // Adjust the URL as needed
                 if (response.ok) {
                     const data = await response.json();
                     setProducts(data);
@@ -30,7 +30,7 @@ const Products = () => {
         cart.push(product);
         // Store the updated cart back in localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
-        alert(`${product.name} added to cart!`);
+    
     };
 
     return (
