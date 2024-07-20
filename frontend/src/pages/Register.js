@@ -1,4 +1,4 @@
-// Login.js
+
 import React, { useState } from 'react';
 import { useAuth } from '../components/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -66,6 +66,15 @@ const Register = () => {
                 <Button type="submit" variant="contained" color="primary">
                     Register
                 </Button>
+
+                <Button
+                component="a"
+                href="/"
+                variant="outlined" 
+                color="primary"
+                style={{textDecoration: 'none', marginLeft: 16}} >
+                    Login instead
+                </Button>
             </form>
             <p>{responseMessage}</p>
         </Container>
@@ -73,4 +82,4 @@ const Register = () => {
 }
 
 
-export default Login
+export default Register

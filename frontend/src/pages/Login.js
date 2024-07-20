@@ -68,6 +68,14 @@ const Login = () => {
                 <Button type="submit" variant="contained" color="primary">
                     Login
                 </Button>
+                <Button
+                component="a"
+                href="/register"
+                variant="outlined" 
+                color="primary"
+                style={{textDecoration: 'none', marginLeft: 16}}  >  
+                    Register instead
+                </Button>
             </form>
             <p>{responseMessage}</p>
         </Container>
