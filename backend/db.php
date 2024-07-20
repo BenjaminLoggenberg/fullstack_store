@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root"; // Your MySQL root username
-$password = ""; // Your MySQL root password
+$password = "root"; // Your MySQL root password
 $dbname = "shopdb"; // The database you want to create
 $port = "8889";
 
