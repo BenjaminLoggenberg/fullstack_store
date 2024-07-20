@@ -22,13 +22,13 @@ switch($request_method) {
         break;
     case 'GET':
         // Route GET requests
-        echo $path;
+        //  echo $path;
         if($path == '/logout') {
             include_once 'logout.php';
         } elseif($path == '/') {
-            echo "tester1";
+            // echo "tester1";
             include_once 'products.php';
-            echo "tester2";
+            // echo "tester2";
         }
         break;
     default:
