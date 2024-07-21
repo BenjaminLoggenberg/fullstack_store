@@ -27,8 +27,8 @@ if($num > 0) {
     if(password_verify($password, $password2)) {
         session_start();
         $_SESSION['user_id'] = $id;
-        echo json_encode(array("message" => "Login successful."));
-    } else {
+        echo json_encode(array("user_id" => $id));
+        } else {
         echo json_encode(array("message" => "Login failed."));
     }
 } else {

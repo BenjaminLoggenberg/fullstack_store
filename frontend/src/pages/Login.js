@@ -31,7 +31,8 @@ const Login = () => {
             if (response.ok) {
                 // Assuming the response contains a token or similar
                 // Save token to local storage or context
-                login();
+                const data = await response.json(); // Assuming the response contains the user_id 
+                login(data.user_id);
                 navigate('/products');
             }
           else {

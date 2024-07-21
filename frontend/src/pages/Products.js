@@ -30,7 +30,7 @@ const Products = () => {
         cart.push(product);
         // Store the updated cart back in localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
-    
+        window.dispatchEvent(new Event('storage')); // Trigger storage event to update cart count and total
     };
 
     return (

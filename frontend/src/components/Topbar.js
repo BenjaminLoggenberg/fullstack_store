@@ -1,44 +1,66 @@
-import React from 'react';
-import { AppBar, Toolbar, IconButton, Typography, Button, Box } from '@mui/material';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import LogoutIcon from '@mui/icons-material/Logout';
-import { Link } from 'react-router-dom'; // Adjust if you're using a different routing library
-import { useAuth } from './AuthContext'; // Adjust the path as needed
+import React, { useContext, useEffect, useState } from 'react';
+import { AppBar, Toolbar, Typography, IconButton, Button, Badge } from '@mui/material';
+import { ShoppingCart, Logout } from '@mui/icons-material';
+import { useAuth } from './AuthContext';
+import { Link } from 'react-router-dom';
 
+const Topbar = () => {
+    const { isAuthenticated, logout } = useAuth();
+    const [cartCount, setCartCount] = useState(0);
+    const [totalAmount, setTotalAmount] = useState(0);
 
-const TopBar = () => {
-    const { logout, isAuthenticated } = useAuth(); // 
-    const handleLogout = () => { logout(); 
-        window.location.href = '/'; // Redirect to home page or login page 
+    useEffect(() => {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        setCartCount(cart.length);
+        setTotalAmount(cart.reduce((total, item) => total + item.price, 0));
+    }, []);
+
+    useEffect(() => {
+        const handleStorageChange = () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            setCartCount(cart.length);
+            setTotalAmount(cart.reduce((total, item) => total + item.price, 0));
         };
+
+        window.addEventListener('storage', handleStorageChange);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+        };
+    }, []);
+
     return (
-
-        <AppBar position="static" sx={{ backgroundColor: '#1976d2' }}>
+        <AppBar position="static">
             <Toolbar>
-                {/* App Logo */}
-                <IconButton edge="start" color="inherit" aria-label="logo" sx={{ mr: 2 }}>
-                    <img src="/path-to-logo.png" alt="App Logo" style={{ height: 40 }} />
-                </IconButton>
-
-                {/* App Name (Centered) */}
-                <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
-                    <Typography variant="h6">
-                        App Name
-                    </Typography>
-                </Box>
-
-              {isAuthenticated && ( 
-                <> 
-                <IconButton color="inherit" component={Link} to="/cart"> <ShoppingCartIcon /> 
-                </IconButton> 
-                <Button color="inherit" startIcon={<LogoutIcon />} onClick={handleLogout}> Logout 
-                </Button> 
-                </> 
-            )}
+                <div/>
+                <Typography variant="h6" style={{ flexGrow: 1, textAlign: 'center' }}>
+                    App Name
+                </Typography>
+                {isAuthenticated && (
+                    <>
+                        <IconButton
+                            component={Link}
+                            to="/cart"
+                            color="inherit"
+                        >
+                            <Badge badgeContent={cartCount} color="secondary">
+                                <ShoppingCart />
+                            </Badge>
+                        </IconButton>
+                        <Typography variant="body1" style={{ marginRight: 20 }}>
+                            ${totalAmount.toFixed(2)}
+                        </Typography>
+                        <Button color="inherit" onClick={logout}>
+                            <Logout />
+                            Logout
+                        </Button>
+                    </>
+                )}
             </Toolbar>
         </AppBar>
     );
 };
 
-export default TopBar;
+export default Topbar;
+
 

@@ -1,17 +1,19 @@
 <?php
 // user_data.php
+include_once 'cors.php';
 include_once 'db.php'; // Include database connection file
 
-// Get JSON input data
-$data = json_decode(file_get_contents("php://input"));
-$user_id = $data->user_id; // Extract user_id from input data
-
+if (isset($_GET['user_id'])) { $user_id = (int)$_GET['user_id']; 
+} else { 
+    echo json_encode(array("message" => "User ID not provided")); 
+    exit; 
+}
 // Initialize database connection
 $db = new Database();
 $conn = $db->getConnection();
 
 // Prepare SQL query to fetch user data
-$query = "SELECT id, username, created_at FROM users WHERE id = :user_id LIMIT 0,1";
+$query = "SELECT id, username, created_at FROM user WHERE id = :user_id LIMIT 0,1";
 $stmt = $conn->prepare($query);
 $stmt->bindParam(":user_id", $user_id); // Bind user_id parameter
 $stmt->execute(); // Execute query

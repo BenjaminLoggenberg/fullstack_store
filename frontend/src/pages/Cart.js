@@ -23,7 +23,7 @@ export const Cart = () => {
         localStorage.setItem('cart', JSON.stringify(updatedCart));
         // Update state
         setCartItems(updatedCart);
-       
+        window.dispatchEvent(new Event('storage')); // Trigger storage event to update cart count and total
     };
 
     return (
