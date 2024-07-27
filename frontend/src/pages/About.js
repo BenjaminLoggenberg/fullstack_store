@@ -3,23 +3,18 @@ import { Container, Grid, Typography, Card, CardMedia, CardContent } from '@mui/
 
 const teamMembers = [
     {
-        name: 'Alice Johnson',
+        name: 'Benjamin Loggenberg',
         role: 'CEO',
         imageUrl: 'https://via.placeholder.com/400x300',
-        alt: 'Alice Johnson',
+        alt: 'Benjamin Loggenberg',
     },
     {
-        name: 'Bob Smith',
+        name: 'Chére Loggenberg',
         role: 'CTO',
         imageUrl: 'https://via.placeholder.com/400x300',
-        alt: 'Bob Smith',
+        alt: 'Chére Loggenberg',
     },
-    {
-        name: 'Carol Lee',
-        role: 'Designer',
-        imageUrl: 'https://via.placeholder.com/400x300',
-        alt: 'Carol Lee',
-    },
+   
 ];
 
 const About = () => {
@@ -57,6 +52,13 @@ const About = () => {
                         </Card>
                     </Grid>
                 ))}
+  <Typography variant="h5" gutterBottom style={{ marginTop: '2rem' }}>
+                About Buy Diamonds
+            </Typography>
+            <Typography variant="body1">
+                At Buy Diamonds, we specialize in offering a wide range of exquisite natural and lab-grown diamonds, catering to the finest tastes. Our mission is to provide unique, custom fine jewelry that reflects individuality and elegance. With over 100,000 diamonds in our collection, we are dedicated to delivering unparalleled quality and personalized service. Discover the perfect piece that celebrates your style and moments with us.
+            </Typography>
+
             </Grid>
         </Container>
     );
