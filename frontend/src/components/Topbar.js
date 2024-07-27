@@ -34,7 +34,7 @@ const Topbar = () => {
             <Toolbar>
                 <div/>
                 <Typography variant="h6" style={{ flexGrow: 1, textAlign: 'center' }}>
-                    App Name
+                    Online Fanatics
                 </Typography>
                 {isAuthenticated && (
                     <>
