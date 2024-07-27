@@ -86,6 +86,7 @@ const Products = () => {
 
     return (
         <>
+<<<<<<< Updated upstream
         <h1>Products Page</h1>
         <Grid container spacing={3} style={{ padding: 20 }}>
             {products.map((product) => (
@@ -96,6 +97,18 @@ const Products = () => {
                             alt={product.name}
                             height="140"
                             image={product.imageUrl}
+=======
+            <h1>Products Page</h1>
+            <Grid container spacing={3} style={{ padding: 20 }}>
+                {products.map((product) => (
+                    <Grid item xs={12} sm={6} md={4} key={product.id}>
+                        <Card>
+                            <CardMedia
+                                component="img"
+                                alt={product.name}
+                                height="140"
+                                image={product.image_url}
+>>>>>>> Stashed changes
                             />
                         <CardContent>
                             <Typography variant="h6" component="div">
