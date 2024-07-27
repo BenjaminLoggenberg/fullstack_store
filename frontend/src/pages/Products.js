@@ -1,87 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
 
-const products = [
-    {
-        id: 1,
-        name: 'Product 1',
-        price: 29.99,
-        imageUrl: 'https://via.placeholder.com/150', // Replace with actual image URLs
-    },
-    {
-        id: 2,
-        name: 'Product 2',
-        price: 39.99,
-        imageUrl: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 3,
-        name: 'Product 3',
-        price: 49.99,
-        imageUrl: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 1,
-        name: 'Product 1',
-        price: 29.99,
-        imageUrl: 'https://via.placeholder.com/150', // Replace with actual image URLs
-    },
-    {
-        id: 2,
-        name: 'Product 2',
-        price: 39.99,
-        imageUrl: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 3,
-        name: 'Product 3',
-        price: 49.99,
-        imageUrl: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 1,
-        name: 'Product 1',
-        price: 29.99,
-        imageUrl: 'https://via.placeholder.com/150', // Replace with actual image URLs
-    },
-    {
-        id: 2,
-        name: 'Product 2',
-        price: 39.99,
-        imageUrl: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 3,
-        name: 'Product 3',
-        price: 49.99,
-        imageUrl: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 1,
-        name: 'Product 1',
-        price: 29.99,
-        imageUrl: 'https://via.placeholder.com/150', // Replace with actual image URLs
-    },
-    {
-        id: 2,
-        name: 'Product 2',
-        price: 39.99,
-        imageUrl: 'https://via.placeholder.com/150',
-    },
-    {
-        id: 3,
-        name: 'Product 3',
-        price: 49.99,
-        imageUrl: 'https://via.placeholder.com/150',
-    },
-];
-
 const Products = () => {
-    const [cart, setCart] = useState([]);
+    const [products, setProducts] = useState([]);
+
+    // Fetch products from API on component mount
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('http://localhost:8888/products.php'); // Adjust the URL as needed
+                if (response.ok) {
+                    const data = await response.json();
+                    setProducts(data);
+                } else {
+                    console.error('Failed to fetch products');
+                }
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+
+        fetchProducts();
+    }, []); // Empty dependency array means this effect runs once on mount
 
     const handleAddToCart = (product) => {
-        setCart([...cart, product]);
-        alert(`${product.name} added to cart!`);
+        // Retrieve existing cart from localStorage or initialize an empty array
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        // Add the new product to the cart
+        cart.push(product);
+        // Store the updated cart back in localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+        window.dispatchEvent(new Event('storage')); // Trigger storage event to update cart count and total
     };
 
     return (
@@ -97,28 +46,29 @@ const Products = () => {
                                 height="140"
                                 image={product.image_url}
                             />
-                        <CardContent>
-                            <Typography variant="h6" component="div">
-                                {product.name}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                ${product.price.toFixed(2)}
-                            </Typography>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                onClick={() => handleAddToCart(product)}
-                                style={{ marginTop: 10 }}
+                            <CardContent>
+                                <Typography variant="h6" component="div">
+                                    {product.name}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    ${product.price.toFixed(2)}
+                                </Typography>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={() => handleAddToCart(product)}
+                                    style={{ marginTop: 10 }}
                                 >
-                                Add to Cart
-                            </Button>
-                        </CardContent>
-                    </Card>
-                </Grid>
-            ))}
-        </Grid>
-    </>
+                                    Add to Cart
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                ))}
+            </Grid>
+        </>
     );
 };
 
 export default Products;
+

@@ -1,23 +1,22 @@
-// Login.js
+
 import React, { useState } from 'react';
 import { useAuth } from '../components/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Container, Typography } from '@mui/material';
 
-const Login = () => {
+const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [responseMessage, setResponseMessage] = useState('');
 
     const [error, setError] = useState('');
-    const { login } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:8888/login.php', {
+            const response = await fetch('http://localhost:8888/register.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -28,15 +27,11 @@ const Login = () => {
                 }),
             });
 
-            if (response.ok) {
-                // Assuming the response contains a token or similar
-                // Save token to local storage or context
-                const data = await response.json(); // Assuming the response contains the user_id 
-                login(data.user_id);
-                navigate('/products');
+            if (response.ok) {        
+                navigate('/');
             }
           else {
-            setResponseMessage('Login failed.');
+            setResponseMessage('Registration failed.');
         }
     } catch (error) {
         console.error('Error:', error);
@@ -46,7 +41,7 @@ const Login = () => {
 
     return (
         <Container maxWidth="xs">
-            <Typography variant="h5">Login</Typography>
+            <Typography variant="h5">Create an account</Typography>
             <form onSubmit={handleSubmit}>
                 <TextField
                     label="Username"
@@ -66,15 +61,16 @@ const Login = () => {
                 />
                 {error && <Typography color="error">{error}</Typography>}
                 <Button type="submit" variant="contained" color="primary">
-                    Login
+                    Register
                 </Button>
+
                 <Button
                 component="a"
-                href="/register"
+                href="/"
                 variant="outlined" 
                 color="primary"
-                style={{textDecoration: 'none', marginLeft: 16}}  >  
-                    Register instead
+                style={{textDecoration: 'none', marginLeft: 16}} >
+                    Login instead
                 </Button>
             </form>
             <p>{responseMessage}</p>
@@ -83,4 +79,4 @@ const Login = () => {
 }
 
 
-export default Login
+export default Register

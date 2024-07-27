@@ -16,6 +16,7 @@ const teamMembers = [
         imageUrl: '/images/Profile-Pic-square.png',
         alt: 'Kim Wonders',
     },
+   
 ];
 
 const About = () => {
