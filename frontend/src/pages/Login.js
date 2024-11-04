@@ -4,6 +4,8 @@ import { useAuth } from '../components/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { TextField, Button, Container, Typography } from '@mui/material';
 
+//logic and rendering of the login page
+
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');

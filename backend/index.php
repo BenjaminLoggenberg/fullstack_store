@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') { exit(0); }
 include_once 'db.php';
 
 
-$request_method = $_SERVER["REQUEST_METHOD"]; // Get the request method (GET, POST, etc.)
+$request_method = $_SERVER["REQUEST_METHOD"]; // Get the request method 
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); // Get the request path
 
 switch($request_method) {

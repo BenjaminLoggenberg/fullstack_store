@@ -15,6 +15,7 @@ import { AuthProvider } from './components/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
 
+//Router to create layout of react project in the browser
 
 const router = createBrowserRouter([
     {

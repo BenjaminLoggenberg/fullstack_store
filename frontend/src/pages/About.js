@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Grid, Typography, Card, CardMedia, CardContent } from '@mui/material';
 import '../about.css';
 
-
+//team members of the company
 const teamMembers = [
     {
         name: 'John Wonders',
@@ -18,7 +18,7 @@ const teamMembers = [
     },
    
 ];
-
+//rendered version of the about page
 const About = () => {
     return (
         <Container maxWidth="lg" style={{ padding: '2rem' }}>
