@@ -1,5 +1,7 @@
 <?php
-// login.php
+
+include_once 'cors.php';
+
 include_once 'db.php';
 
 $data = json_decode(file_get_contents("php://input"));
@@ -10,7 +12,7 @@ $password = $data->password;
 $db = new Database();
 $conn = $db->getConnection();
 
-$query = "SELECT * FROM users WHERE username = :username LIMIT 0,1";
+$query = "SELECT * FROM user WHERE username = :username LIMIT 0,1";
 $stmt = $conn->prepare($query);
 $stmt->bindParam(":username", $username);
 $stmt->execute();
@@ -25,12 +27,14 @@ if($num > 0) {
     if(password_verify($password, $password2)) {
         session_start();
         $_SESSION['user_id'] = $id;
-        echo json_encode(array("message" => "Login successful."));
-    } else {
+        echo json_encode(array("user_id" => $id));
+        } else {
         echo json_encode(array("message" => "Login failed."));
     }
 } else {
     echo json_encode(array("message" => "User not found."));
+    http_response_code(401);
+    exit;
 }
 ?>
 

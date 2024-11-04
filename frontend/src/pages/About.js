@@ -1,27 +1,24 @@
 import React from 'react';
 import { Container, Grid, Typography, Card, CardMedia, CardContent } from '@mui/material';
+import '../about.css';
 
+//team members of the company
 const teamMembers = [
     {
-        name: 'Alice Johnson',
+        name: 'John Wonders',
         role: 'CEO',
-        imageUrl: 'https://via.placeholder.com/400x300',
-        alt: 'Alice Johnson',
+        imageUrl: '/images/images.jpeg',
+        alt: 'John Wonders',
     },
     {
-        name: 'Bob Smith',
+        name: 'Kim Wonders',
         role: 'CTO',
-        imageUrl: 'https://via.placeholder.com/400x300',
-        alt: 'Bob Smith',
+        imageUrl: '/images/Profile-Pic-square.png',
+        alt: 'Kim Wonders',
     },
-    {
-        name: 'Carol Lee',
-        role: 'Designer',
-        imageUrl: 'https://via.placeholder.com/400x300',
-        alt: 'Carol Lee',
-    },
+   
 ];
-
+//rendered version of the about page
 const About = () => {
     return (
         <Container maxWidth="lg" style={{ padding: '2rem' }}>
@@ -57,6 +54,13 @@ const About = () => {
                         </Card>
                     </Grid>
                 ))}
+  <Typography variant="h5" gutterBottom style={{ marginTop: '2rem' }}>
+              
+            </Typography>
+            <Typography variant="body1" style={{ padding: '2rem' }}>
+                At Online Fanatics, we specialize in offering a wide range of exquisite items, catering to the finest tastes. Our mission is to provide unique, items that reflect individuality and elegance.
+            </Typography>
+
             </Grid>
         </Container>
     );

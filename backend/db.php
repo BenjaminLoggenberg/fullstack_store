@@ -19,7 +19,7 @@ class Database {
 
             // Create the database if it does not exist
             $pdo->exec("CREATE DATABASE IF NOT EXISTS $this->dbname");
-            echo "Database created successfully\n";
+            // echo "Database created successfully\n";
 
             // Select the database
             $pdo->exec("USE $this->dbname");
@@ -37,7 +37,7 @@ class Database {
 
             // Execute SQL commands
             $this->conn->exec($sql);
-            echo "Database setup completed successfully\n";
+            // echo "Database setup completed successfully\n";
         } catch (PDOException $e) {
             echo "Error setting up database: " . $e->getMessage();
         }

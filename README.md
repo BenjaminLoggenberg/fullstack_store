@@ -1,70 +1,120 @@
-# Getting Started with Create React App
+# fullstack_store - E-commerce Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+**fullstack_store** is a comprehensive e-commerce platform designed to provide an exceptional shopping experience for customers looking to purchase diamonds and custom fine jewelry. This project leverages modern web technologies to deliver a seamless and intuitive user interface, backed by a robust backend infrastructure.
 
-In the project directory, you can run:
+## Technologies and Tools Used
 
-### `npm start`
+### Frontend
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React.js**: JavaScript library for building user interfaces
+- **Material-UI (MUI)**: React component library for implementing Google's Material Design
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Backend
 
-### `npm test`
+- **PHP**: Server-side scripting language for web development
+- **MySQL**: Relational database management system
+- **MAMP**: Local server environment for PHP and MySQL
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Other Tools
 
-### `npm run build`
+- **Node.js**: JavaScript runtime built on Chrome's V8 JavaScript engine
+- **npm**: Package manager for Node.js
+- **Visual Studio Code**: Source-code editor
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Project Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The project is divided into two main folders: `frontend` and `backend`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **frontend**: Contains the React application code.
+- **backend**: Contains PHP scripts and MySQL setup scripts.
 
-### `npm run eject`
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Follow these instructions to set up the project on your local machine.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Prerequisites
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Ensure you have the following installed on your system:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **Node.js** (and npm)
+- **Docker**
+- **MAMP**
+- **Visual Studio Code**
 
-## Learn More
+### Installation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### 1. Clone the Repository
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+git clone https://github.com/yourusername/fullstack_store.git
+cd fullstack_store
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+#### 2. Setting Up the Frontend
+Navigate to the frontend directory and install the required dependencies:
+cd frontend
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Start the React development server:
+npm start
 
-### Making a Progressive Web App
+#### 1. Setting Up the Backend
+1) Install and Configure MAMP:
+2) Download and install MAMP from MAMP's official website.
+3) Open MAMP and start the servers.
+4) Set the document root to the backend directory of your project. This can be configured in MAMP's preferences under the "Web Server" tab.
+5) Set Up MySQL Database:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### Open phpMyAdmin via MAMP's web start page.
+Create a new database named fullstack_store.
+Import the Database Schema:
 
-### Advanced Configuration
+#### In phpMyAdmin, select the fullstack_store database.
+Click on the "Import" tab and import the db_setup.php file located in the backend directory.
+Update Database Configuration:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Ensure the database connection settings in your PHP files match your local setup. Typically, this involves setting the hostname to localhost, the username to root, and the password to root (or empty, depending on your MAMP setup).
 
-### Deployment
+#### Using Docker (Optional)
+If you prefer to use Docker, follow these steps:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### Build Docker Image:
 
-### `npm run build` fails to minify
+bash
+Copy code
+docker build -t fullstack_store-backend .
+Run Docker Container:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+bash
+Copy code
+docker run -d -p 8888:80 -v $(pwd):/var/www/html --name fullstack_store-backend fullstack_store-backend
+Running the Application
+With both frontend and backend servers running, open your browser and navigate to:
+
+plaintext
+Copy code
+http://localhost:3000
+You should see the fullstack_store application up and running.
+
+## Usage
+### User Features
+- **Browse and search for diamonds and jewelry**
+- **View product details**
+- **Add items to the shopping cart**
+- **User authentication (login, registration)**
+- **Profile management (view and update profile, change password)**
+- **Purchase history**
+- **Admin Features**
+- **Manage products (add, edit, delete)**
+- **View sales and user analytics**
+
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+Acknowledgements
+React documentation
+Material-UI documentation
+PHP documentation
+MySQL documentation

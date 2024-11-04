@@ -36,17 +36,17 @@ BEGIN
     END IF;
 
     -- Check if the `shop` table is empty and insert data if it is
-    IF (SELECT COUNT(*) FROM shop) = 0 THEN
+   
         INSERT INTO shop (name, image_url, price) VALUES
-        ('Shop A', 'http://example.com/shopA.jpg', 19.99),
-        ('Shop B', 'http://example.com/shopB.jpg', 29.99),
-        ('Shop C', 'http://example.com/shopC.jpg', 39.99),
-        ('Shop D', 'http://example.com/shopD.jpg', 49.99),
-        ('Shop E', 'http://example.com/shopE.jpg', 59.99),
-        ('Shop F', 'http://example.com/shopF.jpg', 69.99),
-        ('Shop G', 'http://example.com/shopG.jpg', 79.99),
-        ('Shop H', 'http://example.com/shopH.jpg', 89.99),
-        ('Shop I', 'http://example.com/shopI.jpg', 99.99);
+        ('Halo Ring', '/images/Halo_Rings.jpeg', 19.99),
+        ('Sidestone Ring', '/images/Sidestone_Rings.jpeg', 29.99),
+        ('Solitaire Ring', '/images/Soliraire_Rings.jpeg', 39.99),
+        ('Three Stone Ring', '/images/Three_Stone_Rings.jpeg', 49.99),
+        ('Vintage Ring', '/images/Vintage_Rings.jpeg', 59.99),
+        ('Diamond Drop Earring', '/images/Diamond_Drop_Earrings.jpeg', 69.99),
+        ('Diamond Fashion Earring', '/images/Diamond_Fashion_Earrings.jpeg', 79.99),
+        ('Diamond Hoop Earring', '/images/Diamond_Hoop_Earrings.jpeg', 89.99),
+        ('Diamond Stud Earring', '/images/Diamond_Stud_Earrings.jpeg', 99.99);
     END IF;
 
     -- Check if the `user_purchases` table is empty and insert data if it is
